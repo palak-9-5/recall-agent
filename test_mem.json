@@ -1,0 +1,22 @@
+{
+    "test1": {
+        "concept": "test1",
+        "question": "q1",
+        "expected_answer": "a1",
+        "easiness": 2.5,
+        "interval": 0,
+        "repetitions": 0,
+        "next_review": "2026-06-23",
+        "history": []
+    },
+    "test2": {
+        "concept": "test2",
+        "question": "q2",
+        "expected_answer": "a2",
+        "easiness": 2.5,
+        "interval": 0,
+        "repetitions": 0,
+        "next_review": "2026-06-23",
+        "history": []
+    }
+}

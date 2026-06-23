@@ -1,0 +1,46 @@
+{
+    "Python Lists": {
+        "concept": "Python Lists",
+        "question": "What is a Python list ?",
+        "expected_answer": "A Python list is an ordered mutable collection of items.",
+        "easiness": 2.6,
+        "interval": 1,
+        "repetitions": 1,
+        "next_review": "2026-06-24",
+        "history": [
+            {
+                "date": "2026-06-23 15:58:43",
+                "user_answer": "A list stores multiple items in order and can be modified.",
+                "grade_quality": 5,
+                "feedback": "Manually graded by user."
+            }
+        ]
+    },
+    "Python Dictionary": {
+        "concept": "Python Dictionary",
+        "question": "What is a Python dictionary?",
+        "expected_answer": "A Python dictionary stores key-value pairs and allows lookup by key.",
+        "easiness": 1.7000000000000002,
+        "interval": 1,
+        "repetitions": 0,
+        "next_review": "2026-06-24",
+        "history": [
+            {
+                "date": "2026-06-23 16:13:51",
+                "user_answer": "xyz",
+                "grade_quality": 0,
+                "feedback": "Your answer 'xyz' is completely incorrect for the question 'What is a Python list?'. A Python list is an ordered, mutable collection of items. Don't worry, keep practicing and you'll get it!"
+            }
+        ]
+    },
+    "Python Sets": {
+        "concept": "Python Sets",
+        "question": "What is a Python set?",
+        "expected_answer": "A Python set is an unordered collection of unique elements.",
+        "easiness": 2.5,
+        "interval": 0,
+        "repetitions": 0,
+        "next_review": "2026-06-23",
+        "history": []
+    }
+}

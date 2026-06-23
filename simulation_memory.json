@@ -1,0 +1,36 @@
+{
+    "Python decorators": {
+        "concept": "Python decorators",
+        "question": "What is a decorator in Python, and how is it defined?",
+        "expected_answer": "A decorator is a function that takes another function as an argument, extends its behavior without modifying it, and returns a new function. It is defined using the @ symbol syntax.",
+        "easiness": 2.6,
+        "interval": 1,
+        "repetitions": 1,
+        "next_review": "2026-06-24",
+        "history": [
+            {
+                "date": "2026-06-23 15:48:57",
+                "user_answer": "A decorator is a function that wraps another function and extends its behavior. It is usually defined using the @ syntax.",
+                "grade_quality": 5,
+                "feedback": "[MOCK FEEDBACK] Outstanding! Your answer covers almost all the core key points of the expected details. Good job."
+            }
+        ]
+    },
+    "REST API HTTP Methods": {
+        "concept": "REST API HTTP Methods",
+        "question": "Name the 4 primary HTTP methods used in REST APIs and their typical CRUD mapping.",
+        "expected_answer": "GET maps to Read, POST maps to Create, PUT maps to Update/Replace, and DELETE maps to Delete.",
+        "easiness": 2.36,
+        "interval": 1,
+        "repetitions": 1,
+        "next_review": "2026-06-24",
+        "history": [
+            {
+                "date": "2026-06-23 15:49:26",
+                "user_answer": "GET = Read",
+                "grade_quality": 3,
+                "feedback": "[MOCK FEEDBACK] Correct in spirit, but you missed some of the expected key details. Read the expected answer to fill the gap."
+            }
+        ]
+    }
+}
