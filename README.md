@@ -1,67 +1,72 @@
 # Recall Agent – AI-Powered Spaced Repetition Learning Agent
 
 ## The Problem
-Spaced repetition is proven to boost long‑term retention, but users often forget to open the app at the right time. Recall Agent proactively reaches into your daily workflow, reminding you when reviews are due instead of waiting for you to remember.
+Spaced repetition works, but people forget to open the app. This agent reaches into your life, sending proactive reminders instead of waiting for you.
 
 ## How It Works
 - **SM‑2 algorithm** – Calculates optimal review intervals based on grading quality.
-- **Google Gemini API** – AI‑grades your answers (0‑5) and provides constructive feedback.
-- **Discord webhook** – Sends proactive notifications to a Discord channel when a concept is due.
-- **memory.json** – Persists concepts, scheduling data, and review history across sessions.
+- **Gemini API** – AI grades your answers (0‑5) and provides feedback.
+- **Discord webhook** – Sends proactive notifications when reviews are due.
+- **`memory.json`** – Persists concepts, schedules, and review history.
 
 ## Features
-- Add new concepts with custom questions.
-- AI‑graded reviews using Gemini.
-- Forgetting‑curve‑driven scheduling (SM‑2).
-- Discord alerts for upcoming reviews.
-- Analytics dashboard (Streamlit) showing total concepts, due today, review stats.
-- CLI utilities + Streamlit UI for interaction.
+- Add concepts
+- AI‑graded reviews
+- Forgetting‑curve scheduling
+- Discord alerts
+- Analytics dashboard
+- CLI + Streamlit UI
 
 ## Tech Stack
-- **Python**
-- **Streamlit** (web UI)
-- **Google Gemini API** (AI grading)
-- **Discord Webhooks** (notifications)
-- **SM‑2 Algorithm** (spaced repetition)
+- Python
+- Streamlit
+- Google Gemini API
+- Discord Webhooks
+- SM‑2 Algorithm
 
 ## Setup & Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/recall-agent.git
-   cd recall-agent
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Create a `.env` file with the required keys (see below).
-4. Run the app:
-   ```bash
-   streamlit run app.py
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/recall-agent.git
+cd recall-agent
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create a .env file
+# Replace the placeholders with your actual keys
+cat <<EOF > .env
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL
+EOF
+
+# Run the app
+streamlit run app.py
+```
 
 ## Environment Variables
-| Variable               | Description                                 | Where to obtain |
-|------------------------|---------------------------------------------|-----------------|
-| `GEMINI_API_KEY`       | API key for Google Gemini                  | Google AI Studio |
-| `DISCORD_WEBHOOK_URL` | Discord webhook URL for notifications      | Your Discord server (Create a webhook in channel settings) |
+| Variable            | Description                         | Where to obtain                                 |
+|---------------------|-------------------------------------|------------------------------------------------|
+| `GEMINI_API_KEY`    | Gemini API key for AI grading       | Google Cloud Console (GenAI API)               |
+| `DISCORD_WEBHOOK_URL`| Discord webhook for notifications   | Discord server → Integrations → Webhooks        |
 
 ## Project Structure
 ```
 recall-agent/
-├── app.py            # Streamlit UI entry point
-├── main.py           # Core routing & page logic
-├── memory.py         # JSON persistence utilities
-├── scheduler.py      # SM‑2 scheduling implementation
-├── grader.py         # Gemini API wrapper for grading
-├── messenger.py      # Discord webhook helper
-├── memory.json       # Persistent data store (generated at runtime)
-└── assets/
-    └── logo.png     # Project logo
+├─ app.py          # Streamlit UI entry point
+├─ main.py         # CLI routing & page logic
+├─ memory.py       # JSON persistence utilities
+├─ scheduler.py    # SM‑2 scheduling implementation
+├─ grader.py       # Gemini API wrapper for grading
+├─ messenger.py    # Discord webhook helper
+├─ notifier.py     # Daily Discord notification script
+├─ memory.json     # Persistent data store (generated at runtime)
+└─ assets/
+   └─ logo.png     # Project logo
 ```
 
 ## Built For
 Capstone project submission for the **Kaggle 5‑Day AI Agents Intensive Course** with Google.
 
 ## License
-MIT License
+MIT
