@@ -1,33 +1,38 @@
 import os
+
+# pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field
+
+# pyrefly: ignore [missing-import]
 from google import genai
+
+# pyrefly: ignore [missing-import]
 from google.genai import types
+
 
 class GradeResult(BaseModel):
     score: int = Field(
         ...,
-        description="The SM-2 score from 0 to 5 based on how well the user answered the question."
+        description="The SM-2 score from 0 to 5 based on how well the user answered the question.",
     )
     feedback: str = Field(
         ...,
-        description="Constructive and concise feedback explaining the grade and what points were correct or missing."
+        description="Constructive and concise feedback explaining the grade and what points were correct or missing.",
     )
 
+
 def grade_answer(
-    question: str, 
-    expected_answer: str, 
-    user_answer: str, 
-    api_key: str = None
+    question: str, expected_answer: str, user_answer: str, api_key: str = None
 ) -> tuple[int, str]:
     """Grades a user's answer against the expected answer using the Google Gemini API.
-    
+
     Parameters:
     - question (str): The review question asked.
     - expected_answer (str): The expected correct details.
     - user_answer (str): The answer submitted by the user.
     - api_key (str): Optional Gemini API key. If not provided, the SDK will look for
                       the GEMINI_API_KEY environment variable.
-                      
+
     Returns:
     - tuple: (score, feedback)
              score (int): SM-2 quality score from 0 to 5.
@@ -68,6 +73,8 @@ Generate your grading response conforming to the JSON schema. Be encouraging and
 
     # 4. Request Structured Output from Gemini with retry logic for 503 errors
     import time
+
+    # pyrefly: ignore [missing-import]
     from google.genai.errors import APIError
 
     retries = 3
@@ -78,30 +85,34 @@ Generate your grading response conforming to the JSON schema. Be encouraging and
         try:
             # We use gemini-2.5-flash as the fast, high-quality default model
             response = client.models.generate_content(
-                model='gemini-2.5-flash',
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
                     response_schema=GradeResult,
-                    temperature=0.2, # Low temperature for more consistent, objective grading
+                    temperature=0.2,  # Low temperature for more consistent, objective grading
                 ),
             )
             break
         except APIError as e:
             if e.code == 503 and attempt < retries:
                 wait_time = backoff_times[attempt]
-                print(f"\n[Gemini API] Attempt {attempt + 1} (503 Service Unavailable). Retrying in {wait_time} seconds (Retry {attempt + 1}/{retries})...")
+                print(
+                    f"\n[Gemini API] Attempt {attempt + 1} (503 Service Unavailable). Retrying in {wait_time} seconds (Retry {attempt + 1}/{retries})..."
+                )
                 time.sleep(wait_time)
                 continue
-            
+
             # Logging final failure reason before raising
             if e.code == 503:
-                print(f"\n[Gemini API] Attempt {attempt + 1} failed. All {retries} retries exhausted. Final failure reason: 503 Service Unavailable.")
+                print(
+                    f"\n[Gemini API] Attempt {attempt + 1} failed. All {retries} retries exhausted. Final failure reason: 503 Service Unavailable."
+                )
             else:
-                print(f"\n[Gemini API] Request failed. Final failure reason: Code {e.code} - {e.message}")
+                print(
+                    f"\n[Gemini API] Request failed. Final failure reason: Code {e.code} - {e.message}"
+                )
             raise e
-
-
 
     try:
         # The response.text will be a valid JSON matching GradeResult
@@ -114,4 +125,7 @@ Generate your grading response conforming to the JSON schema. Be encouraging and
         print(f"Error parsing Gemini response: {e}")
         print(f"Raw response was: {response.text}")
         # Fallback in case of parsing error
-        return 3, f"Feedback could not be parsed. (Raw response: {response.text})"
+        return (
+            3,
+            f"Feedback could not be parsed. (Raw response: {response.text})",
+        )
